@@ -1,13 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #fbfcf8;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 1em 0px;
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  border-bottom: 1px solid #dcdfd6;
+  width: 100%;
+  transition: padding 0.3s;
+  z-index: 2;
+  background-color: #fbfcf8;
+}
+
+.menu-icon-container {
+  display: flex;
+  border-radius: 60%;
+  padding: 8px;
+  margin-left: 10px;
+}
+
+.menu-icon-container:hover,
+.search-icon-container:hover {
+  background-color: rgba(20, 20, 20, 0.205);
+  cursor: pointer;
+}
+
+.search-icon-container {
+  display: flex;
+  border-radius: 60%;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+.appname-logo-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.app-title {
+  margin-left: 10px;
+  font-weight: 300;
+}
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top: 74px;
+  height: 100%;
+  background-color: #fbfcf8;
+  z-index: 1;
+}
+
+.text-input {
+  outline: none;
+  border: none;
+  background-color: inherit;
+  width: 100%;
+  font-family: "Roboto", system-ui;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.add-note-container,
+.add-note-container-focused {
+  display: flex;
+  flex-direction: column;
+  background-color: #fffcea;
+  width: 700px;
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid #cfccbb;
+  box-shadow: 0px 2px 3px #46464660;
+  transition: padding 0.3s;
+}
+
+.add-note-container-focused {
+  padding: 35px;
+}
+input::placeholder {
+  font-weight: 500;
+}
+
+.container {
+  display: flex;
+  margin: 20px 15px;
+  justify-content: center;
+}
+
+.content-textarea {
+  resize: none;
+  background-color: inherit;
+  outline: none;
+  border: none;
+  margin: 20px 0;
+  font-family: "Roboto", system-ui;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.content-textarea:focus {
+  border: 1px solid #cfccbb;
+  border-radius: 5px;
+}
+
+.icon-container{
+  padding: 8px;
+  border: 1px solid #81818196;
+  border-radius: 60%;
+  display: flex;
+  margin: 3px 5px;
+}
+
+.add-note-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-container:hover{
+  background-color: #ffffff5e;
+  border: 1px solid #222222;
+  cursor: pointer;
+}
+
+.coral{
+  background-color: #FAAFA8;
+}
+
+.peach{
+  background-color: #F39F76;
+}
+
+.sand{
+  background-color: #FFF8B8;
+}
+
+.mint{
+  background-color: #E2F6D3;
+}
+
+.sage{
+  background-color: #B4DDD3;
+}
+
+.dusk{
+  background-color: #D3BFDB;
+}
+
+.colors{
+  padding: 17px;
+  border-radius: 60%;
+  border: 1px solid #81818196;
+  margin: 0 1px;
+}
+
+.colors:hover{
+  border: 1px solid #222222;
+  cursor: pointer;
+}
+
+.footer-left-container{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.save-btn{
+  padding: 15px;
+  background-color: #e0e0e08c;
+  border: 1px solid #81818196;
+  border-radius: 10px;
+}
+
+.save-btn:hover{
+  background-color: #c2c2c28c;
+  border: 1px solid #222222;
+  cursor: pointer;
+}
+
+.note-container{
+  padding: 30px;
+  border-radius: 10px;
+  margin: 10px 10px;
+  box-shadow: 0px 0px 5px #0000005d;
+  transition: all 0.1s ease-in;
+  min-width: 200px;
+  min-height: 2em;
+}
+
+.notes-list-container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  flex-wrap: wrap-reverse;
+  transition: all 0.3s ease-in-out;
+  margin: 0 100px;
+}
+
+.note-container:hover{
+  cursor: pointer;
+  transform: scale(1.01) translateY(-5px);
+  box-shadow: 0px 0px 10px #0000005d;
+}
+
+@media (max-width:450px) {
+  .notes-list-container{
+    flex-direction: column-reverse;
+    margin: 0;
+  }
 }
