@@ -14,8 +14,7 @@ function NotesList(props: { notes: NoteType[] }) {
             date={note.date}
           />
         );
-      })
-      }
+      })}
     </div>
   );
 }
