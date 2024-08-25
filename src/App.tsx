@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import { type NoteType } from "./types";
+import { searchtype, type NoteType } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import Sidebar from "./components/Sidebar";
 function App() {
   const d = new Date();
   const [sidebar, setsidebar] = useState(false);
+  const [searchnote, setsearchnote] = useState("");
   let newdate;
   if (d.getMinutes() < 10) {
     // eslint-disable-next-line no-useless-concat
@@ -25,14 +26,14 @@ function App() {
       id: uuidv4(),
       title: "firstnote",
       color: "coral",
-      content: "notecontent",
+      content: "first-notecontent",
       date: completedate,
     },
     {
       id: uuidv4(),
-      title: "firstnote",
+      title: "secoundnote",
       color: "peach",
-      content: "notecontent",
+      content: "secound-notecontent",
       date: completedate,
     },
   ]);
@@ -98,16 +99,32 @@ function App() {
     setsidebar(!sidebar);
   }
 
+  function handlesearchtype(text: string) {
+    setsearchnote(text);
+  }
+
   return (
     <div className="app-container">
-      <Header sidebar={sidebar} handlesidebar={handlesidebar} />
+      <Header
+        sidebar={sidebar}
+        handlesidebar={handlesidebar}
+        handlesearchtype={handlesearchtype}
+      />
       <Sidebar
         sidebar={sidebar}
         handlesidebar={handlesidebar}
         handlesidebaroutside={handlesidebaroutside}
       />
       <Main
-        notes={Notes}
+        notes={Notes.filter((note) => {
+          const titleMatch = note.title
+            .toLowerCase()
+            .includes(searchnote.toLowerCase());
+          const contentMatch = note.content
+            .toLowerCase()
+            .includes(searchnote.toLowerCase());
+          return titleMatch || contentMatch;
+        })}
         handleeditnote={handleeditnote}
         handleaddnote={handleaddnote}
         handledeletenote={handledeletenote}

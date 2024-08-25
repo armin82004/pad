@@ -20,3 +20,10 @@ export type handleeditnote = (
 ) => void;
 
 export type handledeletenote = (id: string) => void;
+
+export type handlesearchtype = (text: string) => void;
+
+export type searchtype = {
+  title: string;
+  content: string;
+};

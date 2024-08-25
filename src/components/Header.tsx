@@ -1,8 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import icons from "../styles/icons";
-function Header(props: { sidebar: boolean; handlesidebar: () => void }) {
+import { handlesearchtype, searchtype } from "../types";
+function Header(props: {
+  sidebar: boolean;
+  handlesidebar: () => void;
+  handlesearchtype: handlesearchtype;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [search, setsearch] = useState(false);
+
   function handlesearchclick() {
     setsearch(!search);
   }
@@ -41,7 +47,14 @@ function Header(props: { sidebar: boolean; handlesidebar: () => void }) {
           </div>
           <div ref={ref} className="search-container toggle-serach">
             <span className="search-icon-container">{icons.search}</span>
-            <input placeholder="Search" className="search-input" type="text" />
+            <input
+              placeholder="Search"
+              className="search-input"
+              type="text"
+              onChange={(e) => {
+                props.handlesearchtype(e.currentTarget.value);
+              }}
+            />
           </div>
         </>
       ) : (
