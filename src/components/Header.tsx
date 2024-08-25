@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import icons from "../styles/icons";
-import { handlesearchtype, searchtype } from "../types";
+import { handlesearchtype } from "../types";
 function Header(props: {
   sidebar: boolean;
   handlesidebar: () => void;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import { searchtype, type NoteType } from "./types";
+import { type NoteType } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import Sidebar from "./components/Sidebar";
 function App() {
