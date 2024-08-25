@@ -11,3 +11,12 @@ export type handleaddnote = (
   color: string,
   content: string
 ) => void;
+
+export type handleeditnote = (
+  id: string,
+  title: string,
+  color: string,
+  content: string
+) => void;
+
+export type handledeletenote = (id: string) => void;

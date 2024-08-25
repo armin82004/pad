@@ -1,12 +1,19 @@
-import { NoteType } from "../types";
+import { handledeletenote, handleeditnote, NoteType } from "../types";
 import Note from "./Note";
 
-function NotesList(props: { notes: NoteType[] }) {
+function NotesList(props: {
+  notes: NoteType[];
+  handleeditnote: handleeditnote;
+  handledeletenote: handledeletenote;
+}) {
   return (
     <div className="notes-list-container">
       {props.notes.map((note) => {
         return (
           <Note
+            key={note.id}
+            handleeditnote={props.handleeditnote}
+            handledeletenote={props.handledeletenote}
             id={note.id}
             title={note.title}
             content={note.content}
