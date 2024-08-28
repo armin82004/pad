@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import icons from "../styles/icons";
+import { NoteType } from "../types";
 
 function Sidebar(props: {
   sidebar: boolean;
+  notes: NoteType[];
   handlesidebar: () => void;
   handlesidebaroutside: (sidebarstate: boolean) => void;
+  handlenotefilter: (isarchived: boolean) => void;
 }) {
   const [selecteditem, setselecteditm] = useState("Notes");
   const ref = useRef<HTMLDivElement>(null);
@@ -13,6 +16,13 @@ function Sidebar(props: {
     itemName: string
   ) {
     setselecteditm(itemName);
+    if (itemName === "Notes") {
+      props.handlenotefilter(false)
+      props.handlesidebaroutside(false);
+    } else if (itemName === "Archive") {
+      props.handlenotefilter(true)
+      props.handlesidebaroutside(false);
+    }
   }
 
   function handleclickoutsidemenu(event: MouseEvent) {
@@ -35,7 +45,7 @@ function Sidebar(props: {
     return () => {
       document.removeEventListener("click", handleclick);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -66,7 +76,7 @@ function Sidebar(props: {
           <div className="sidebar-icon-container">{icons.archive_big}</div>
           <span>Archive</span>
         </div>
-        <div
+        {/* <div
           onClick={(e) => {
             handleitemclick(e, "New Lable");
           }}
@@ -76,7 +86,7 @@ function Sidebar(props: {
         >
           <div className="sidebar-icon-container">{icons.new_lable}</div>
           <span>New Lable</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

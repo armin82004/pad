@@ -7,6 +7,7 @@ function Header(props: {
   handlesearchtype: handlesearchtype;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const inputref = useRef<HTMLInputElement>(null);
   const [search, setsearch] = useState(false);
 
   function handlesearchclick() {
@@ -20,6 +21,7 @@ function Header(props: {
   const handleclickoutside = (event: MouseEvent) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       setsearch(false);
+      props.handlesearchtype("");
     }
   };
 
@@ -50,6 +52,7 @@ function Header(props: {
             <input
               placeholder="Search"
               className="search-input"
+              ref={inputref}
               type="text"
               onChange={(e) => {
                 props.handlesearchtype(e.currentTarget.value);

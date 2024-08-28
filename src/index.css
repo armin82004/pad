@@ -364,3 +364,30 @@ input::placeholder {
   align-items: center;
   padding: 15px;
 }
+
+.icon-container-toggle {
+  background-color: #111111;
+  padding: 8px;
+  border: 1px solid #00000048;
+  border-radius: 60%;
+  display: flex;
+  margin: 3px 5px;
+}
+
+.icon-container-toggle:hover{
+  cursor: pointer;
+}
+
+.emptycontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 350px;
+}
+
+.emptycontainer p{
+  color: #b1aea3;
+  font-size: 2.3rem;
+}

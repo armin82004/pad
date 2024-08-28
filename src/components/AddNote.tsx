@@ -4,17 +4,24 @@ import { type NoteType } from "../types";
 type newnotetype = Omit<NoteType, "date" | "id">;
 function AddNote(props: {
   notes: NoteType[];
-  handleaddnote: (title: string, color: string, content: string) => void;
+  handleaddnote: (
+    title: string,
+    color: string,
+    content: string,
+    archived: boolean
+  ) => void;
 }) {
   const textarearef = useRef<HTMLTextAreaElement>(null);
   const [isediting, setisediting] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const titleref = useRef<HTMLInputElement>(null);
+  const [isarchived, setisarchived] = useState(false);
   const [color, setcolor] = useState(false);
   const [newnote, setnewnote] = useState<newnotetype>({
     color: "#fffcea",
     content: "",
     title: "",
+    archived: false,
   });
   let coloval = ["coral", "peach", "sand", "mint", "sage", "dusk"];
   function handleinputfocus() {
@@ -24,10 +31,11 @@ function AddNote(props: {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       setisediting(false);
       setcolor(false);
-      setnewnote({ title: "", content: "", color: "#fffcea" });
+      setnewnote({ title: "", content: "", color: "#fffcea", archived: true });
       if (titleref.current) {
         titleref.current.value = "";
       }
+      setisarchived(false);
     }
   };
 
@@ -86,15 +94,25 @@ function AddNote(props: {
       textarearef.current &&
       textarearef.current.value.trim() !== ""
     ) {
-      props.handleaddnote(newnote.title, newnote.color, newnote.content);
+      props.handleaddnote(
+        newnote.title,
+        newnote.color,
+        newnote.content,
+        isarchived
+      );
 
       setisediting(false);
       setcolor(false);
-      setnewnote({ title: "", content: "", color: "#fffcea" });
+      setnewnote({ title: "", content: "", color: "#fffcea", archived: false });
       if (titleref.current) {
         titleref.current.value = "";
       }
     }
+  }
+
+  function handlearchiveclick() {
+    setisarchived(!isarchived);
+    setnewnote({ ...newnote, archived: !isarchived });
   }
   return (
     <div className="container">
@@ -139,7 +157,14 @@ function AddNote(props: {
                     })}
                   </>
                 ) : null}
-                <div className="icon-container">{icons.archive}</div>
+                <div
+                  className={`${
+                    isarchived ? "icon-container-toggle" : "icon-container "
+                  }`}
+                  onClick={handlearchiveclick}
+                >
+                  {isarchived ? icons.archive_toggle : icons.archive}
+                </div>
               </div>
               <button onClick={handlesaveclick} className="save-btn">
                 Save

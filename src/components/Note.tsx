@@ -8,6 +8,7 @@ type noteprops = {
   content: string;
   color: string;
   date: string;
+  archived: boolean;
   handleeditnote: handleeditnote;
   handledeletenote: handledeletenote;
 };
@@ -30,14 +31,16 @@ function Note(props: noteprops) {
         props.id,
         event.currentTarget.value,
         props.color,
-        props.content
+        props.content,
+        props.archived
       );
     } else if (event.currentTarget instanceof HTMLTextAreaElement) {
       props.handleeditnote(
         props.id,
         props.title,
         props.color,
-        event.currentTarget.value
+        event.currentTarget.value,
+        props.archived
       );
     }
   }
@@ -51,18 +54,54 @@ function Note(props: noteprops) {
     console.log(classname);
 
     if (classname.includes("coral")) {
-      props.handleeditnote(props.id, props.title, "#FAAFA8", props.content);
+      props.handleeditnote(
+        props.id,
+        props.title,
+        "#FAAFA8",
+        props.content,
+        props.archived
+      );
       console.log("hello");
     } else if (classname.includes("peach")) {
-      props.handleeditnote(props.id, props.title, "#F39F76", props.content);
+      props.handleeditnote(
+        props.id,
+        props.title,
+        "#F39F76",
+        props.content,
+        props.archived
+      );
     } else if (classname.includes("sand")) {
-      props.handleeditnote(props.id, props.title, "#FFF8B8", props.content);
+      props.handleeditnote(
+        props.id,
+        props.title,
+        "#FFF8B8",
+        props.content,
+        props.archived
+      );
     } else if (classname.includes("mint")) {
-      props.handleeditnote(props.id, props.title, "#E2F6D3", props.content);
+      props.handleeditnote(
+        props.id,
+        props.title,
+        "#E2F6D3",
+        props.content,
+        props.archived
+      );
     } else if (classname.includes("sage")) {
-      props.handleeditnote(props.id, props.title, "#B4DDD3", props.content);
+      props.handleeditnote(
+        props.id,
+        props.title,
+        "#B4DDD3",
+        props.content,
+        props.archived
+      );
     } else if (classname.includes("dusk")) {
-      props.handleeditnote(props.id, props.title, "#D3BFDB", props.content);
+      props.handleeditnote(
+        props.id,
+        props.title,
+        "#D3BFDB",
+        props.content,
+        props.archived
+      );
     }
   }
 
@@ -70,6 +109,18 @@ function Note(props: noteprops) {
     setisediting(false);
     props.handledeletenote(props.id);
   }
+
+  function handlearchiveclick() {
+    let isarchiveed = !props.archived;
+    props.handleeditnote(
+      props.id,
+      props.title,
+      props.color,
+      props.content,
+      isarchiveed
+    );
+  }
+
   return (
     <>
       <div
@@ -112,7 +163,14 @@ function Note(props: noteprops) {
                     })}
                   </>
                 ) : null}
-                <div className="icon-container">{icons.archive}</div>
+                <div
+                  className={`${
+                    props.archived ? "icon-container-toggle" : "icon-container "
+                  }`}
+                  onClick={handlearchiveclick}
+                >
+                  {props.archived ? icons.archive_toggle : icons.archive}
+                </div>
                 <div className="icon-container" onClick={handledelete}>
                   {icons.delete}
                 </div>

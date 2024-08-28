@@ -8,6 +8,7 @@ function App() {
   const d = new Date();
   const [sidebar, setsidebar] = useState(false);
   const [searchnote, setsearchnote] = useState("");
+  const [isarchived, setisarchived] = useState(false);
   let newdate;
   if (d.getMinutes() < 10) {
     // eslint-disable-next-line no-useless-concat
@@ -28,6 +29,7 @@ function App() {
       color: "coral",
       content: "first-notecontent",
       date: completedate,
+      archived: true,
     },
     {
       id: uuidv4(),
@@ -35,10 +37,16 @@ function App() {
       color: "peach",
       content: "secound-notecontent",
       date: completedate,
+      archived: true,
     },
   ]);
 
-  function handleaddnote(title: string, color: string, content: string) {
+  function handleaddnote(
+    title: string,
+    color: string,
+    content: string,
+    archived: boolean
+  ) {
     const d = new Date();
     let newdate;
     if (d.getMinutes() < 10) {
@@ -54,6 +62,7 @@ function App() {
       content: content,
       color: color,
       date: completedate,
+      archived: archived,
     };
 
     setNotes([...Notes, note]);
@@ -63,7 +72,8 @@ function App() {
     id: string,
     title: string,
     color: string,
-    content: string
+    content: string,
+    archived: boolean
   ) {
     const d = new Date();
     let newdate;
@@ -83,10 +93,10 @@ function App() {
             content: content,
             color: color,
             date: completedate,
+            archived: archived,
           }
         : note
     );
-
     setNotes(newNotes);
   }
 
@@ -103,6 +113,9 @@ function App() {
     setsearchnote(text);
   }
 
+  function handlenotefilter(isarchived: boolean) {
+    setisarchived(isarchived);
+  }
   return (
     <div className="app-container">
       <Header
@@ -112,8 +125,10 @@ function App() {
       />
       <Sidebar
         sidebar={sidebar}
+        handlenotefilter={handlenotefilter}
         handlesidebar={handlesidebar}
         handlesidebaroutside={handlesidebaroutside}
+        notes={Notes}
       />
       <Main
         notes={Notes.filter((note) => {
@@ -123,10 +138,12 @@ function App() {
           const contentMatch = note.content
             .toLowerCase()
             .includes(searchnote.toLowerCase());
-          return titleMatch || contentMatch;
+          return (titleMatch || contentMatch) && isarchived
+            ? note.archived === true
+            : (titleMatch || contentMatch);
         })}
-        handleeditnote={handleeditnote}
         handleaddnote={handleaddnote}
+        handleeditnote={handleeditnote}
         handledeletenote={handledeletenote}
       />
     </div>
