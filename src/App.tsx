@@ -29,7 +29,7 @@ function App() {
       color: "coral",
       content: "Use the search bar to find your desired note",
       date: completedate,
-      archived: true,
+      archived: false,
     },
     {
       id: uuidv4(),
@@ -37,7 +37,7 @@ function App() {
       color: "cornflowerblue",
       content: "Start taking notes using the text input above!",
       date: completedate,
-      archived: true,
+      archived: false,
     },
   ]);
 
