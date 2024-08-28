@@ -33,6 +33,7 @@ function Header(props: {
     return () => {
       document.removeEventListener("click", handleclick);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <header>
