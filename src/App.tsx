@@ -25,17 +25,17 @@ function App() {
   const [Notes, setNotes] = useState<NoteType[]>([
     {
       id: uuidv4(),
-      title: "firstnote",
+      title: "Search!🔍",
       color: "coral",
-      content: "first-notecontent",
+      content: "Use the search bar to find your desired note",
       date: completedate,
       archived: true,
     },
     {
       id: uuidv4(),
-      title: "secoundnote",
-      color: "peach",
-      content: "secound-notecontent",
+      title: "Get started!💫",
+      color: "cornflowerblue",
+      content: "Start taking notes using the text input above!",
       date: completedate,
       archived: true,
     },
@@ -140,7 +140,7 @@ function App() {
             .includes(searchnote.toLowerCase());
           return (titleMatch || contentMatch) && isarchived
             ? note.archived === true
-            : (titleMatch || contentMatch);
+            : titleMatch || contentMatch;
         })}
         handleaddnote={handleaddnote}
         handleeditnote={handleeditnote}

@@ -391,3 +391,8 @@ input::placeholder {
   color: #b1aea3;
   font-size: 2.3rem;
 }
+
+.note-title{
+  font-weight: 400;
+  font-size: 1.2rem;
+}

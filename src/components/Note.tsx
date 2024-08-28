@@ -128,8 +128,8 @@ function Note(props: noteprops) {
         onClick={handlenoteclick}
         style={{ backgroundColor: props.color }}
       >
-        <p>{props.title}</p>
-        <p>{props.content}</p>
+        <p className="note-title">{props.title}</p>
+        <p className="note-content">{props.content}</p>
       </div>
       {isediting && (
         <div className="dialog-overlay">
