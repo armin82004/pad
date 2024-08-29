@@ -17,6 +17,7 @@ Check out the live version of the app [here](https://pad-note.netlify.app/).
 
 ## 🛠️ Built With
 
+- **React**: A JavaScript library for building user interfaces.
 - **HTML5**: The standard markup language for creating web pages.
 - **CSS3**: Styles the application with a clean and modern look.
 - **TypeScript**: Adds functionality and interactivity to the app.
