@@ -1,6 +1,7 @@
 # Pad
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/sites/pad-note/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/914fd329-3a60-4a3f-943e-3774f5878842/deploy-status)](https://app.netlify.com/sites/pad-note/deploys)
+
 
 Welcome to **Pad** - A minimalistic, user-friendly web application for taking notes on the go. It's designed to help you capture your thoughts, ideas, and to-dos quickly and efficiently.
 

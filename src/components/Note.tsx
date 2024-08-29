@@ -19,6 +19,7 @@ function Note(props: noteprops) {
   let coloval = ["coral", "peach", "sand", "mint", "sage", "dusk"];
   function handlenoteclick() {
     setisediting(!isediting);
+    setcolor(false)
   }
 
   function handleedit(
