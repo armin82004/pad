@@ -51,7 +51,6 @@ function Note(props: noteprops) {
 
   function handlecolor(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const classname = event.currentTarget.className;
-    console.log(classname);
 
     if (classname.includes("coral")) {
       props.handleeditnote(

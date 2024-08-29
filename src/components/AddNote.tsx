@@ -70,7 +70,6 @@ function AddNote(props: {
 
   function handlecolor(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const classname = event.currentTarget.className;
-    console.log(classname);
 
     if (classname.includes("coral")) {
       setnewnote({ ...newnote, color: "#FAAFA8" });

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import { type NoteType } from "./types";
@@ -40,6 +40,18 @@ function App() {
       archived: false,
     },
   ]);
+
+  useEffect(() => {
+    const savedNotes = localStorage.getItem("react-notes-app-data");
+    if (savedNotes) {
+      const parsedNotes: NoteType[] = JSON.parse(savedNotes);
+      setNotes(parsedNotes);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("react-notes-app-data", JSON.stringify(Notes));
+  }, [Notes]);
 
   function handleaddnote(
     title: string,
