@@ -8,6 +8,7 @@ function Sidebar(props: {
   handlesidebar: () => void;
   handlesidebaroutside: (sidebarstate: boolean) => void;
   handlenotefilter: (isarchived: boolean) => void;
+  handletitle: (title: string) => void;
 }) {
   const [selecteditem, setselecteditm] = useState("Notes");
   const ref = useRef<HTMLDivElement>(null);
@@ -17,11 +18,13 @@ function Sidebar(props: {
   ) {
     setselecteditm(itemName);
     if (itemName === "Notes") {
-      props.handlenotefilter(false)
+      props.handlenotefilter(false);
       props.handlesidebaroutside(false);
+      props.handletitle("Notes");
     } else if (itemName === "Archive") {
-      props.handlenotefilter(true)
+      props.handlenotefilter(true);
       props.handlesidebaroutside(false);
+      props.handletitle("Archive");
     }
   }
 

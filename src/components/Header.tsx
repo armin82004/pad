@@ -5,6 +5,7 @@ function Header(props: {
   sidebar: boolean;
   handlesidebar: () => void;
   handlesearchtype: handlesearchtype;
+  title: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inputref = useRef<HTMLInputElement>(null);
@@ -33,7 +34,7 @@ function Header(props: {
     return () => {
       document.removeEventListener("click", handleclick);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <header>
@@ -71,7 +72,11 @@ function Header(props: {
             >
               {icons.menu}
             </span>
-            <h1 className="app-title">Pad</h1>
+            {props.title === "Notes" ? (
+              <h1 className="app-title">Pad</h1>
+            ) : (
+              <h1 className="app-title">Archive</h1>
+            )}
           </div>
           <div className="search-container" onClick={handlesearchclick}>
             <span className="search-icon-container">{icons.search}</span>

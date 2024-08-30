@@ -9,6 +9,7 @@ function App() {
   const [sidebar, setsidebar] = useState(false);
   const [searchnote, setsearchnote] = useState("");
   const [isarchived, setisarchived] = useState(false);
+  const [title, settitle] = useState("Notes");
   let newdate;
   if (d.getMinutes() < 10) {
     // eslint-disable-next-line no-useless-concat
@@ -80,6 +81,14 @@ function App() {
     setNotes([...Notes, note]);
   }
 
+  function handletitle(title: string) {
+    if (title === "Notes") {
+      settitle("Notes");
+    } else if (title === "Archive") {
+      settitle("Archive");
+    }
+  }
+
   function handleeditnote(
     id: string,
     title: string,
@@ -134,6 +143,7 @@ function App() {
         sidebar={sidebar}
         handlesidebar={handlesidebar}
         handlesearchtype={handlesearchtype}
+        title={title}
       />
       <Sidebar
         sidebar={sidebar}
@@ -141,6 +151,7 @@ function App() {
         handlesidebar={handlesidebar}
         handlesidebaroutside={handlesidebaroutside}
         notes={Notes}
+        handletitle={handletitle}
       />
       <Main
         notes={Notes.filter((note) => {
