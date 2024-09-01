@@ -36,13 +36,13 @@ Make sure you have [Node.js](https://nodejs.org/) installed.
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/padnote.git
+   git clone https://github.com/armin82004/Pad.git
    ```
 
 2. **Navigate to the project directory**:
 
    ```bash
-   cd padnote
+   cd Pad
    ```
 
 3. **Install the dependencies**:
