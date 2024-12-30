@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { handledeletenote, type handleeditnote } from "../types";
 import icons from "../styles/icons";
 
@@ -16,11 +16,28 @@ type noteprops = {
 function Note(props: noteprops) {
   const [isediting, setisediting] = useState(false);
   const [color, setcolor] = useState(false);
+  const textarearef = useRef<HTMLTextAreaElement>(null);
   let coloval = ["coral", "peach", "sand", "mint", "sage", "dusk"];
+  const [value, setValue] = useState("");
+  if(isediting){
+    if (textarearef.current) {
+      textarearef.current.style.height = "0";
+      const scrollHeight = textarearef.current?.scrollHeight;
+      textarearef.current.style.height = scrollHeight + "px";
+    }
+  }
   function handlenoteclick() {
     setisediting(!isediting);
-    setcolor(false)
+    setcolor(false);
   }
+
+  useEffect(() => {
+    if (textarearef.current) {
+      textarearef.current.style.height = "0";
+      const scrollHeight = textarearef.current?.scrollHeight;
+      textarearef.current.style.height = scrollHeight + "px";
+    }
+  }, [textarearef, value]);
 
   function handleedit(
     event:
@@ -36,6 +53,7 @@ function Note(props: noteprops) {
         props.archived
       );
     } else if (event.currentTarget instanceof HTMLTextAreaElement) {
+      setValue(event.target.value);
       props.handleeditnote(
         props.id,
         props.title,
@@ -141,9 +159,11 @@ function Note(props: noteprops) {
               className="text-input"
             />
             <textarea
+              ref={textarearef}
               value={props.content}
               onChange={handleedit}
               className="content-textarea"
+              rows={5}
             ></textarea>
             <small className="date-text">Edited: {props.date}</small>
             <div className="dialog-footer">

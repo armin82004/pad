@@ -108,6 +108,7 @@ input::placeholder {
   font-weight: 500;
   font-size: 1rem;
   padding: 10px;
+  max-height: 300px;
 }
 
 .content-textarea:focus {
@@ -192,6 +193,7 @@ input::placeholder {
 }
 
 .note-container {
+  display: block;
   padding: 30px;
   border-radius: 10px;
   margin: 10px 10px;
@@ -200,6 +202,7 @@ input::placeholder {
   min-width: 200px;
   min-height: 4em;
   flex: 1 1 0;
+  white-space: wrap;
   width: 0;
 }
 
@@ -225,8 +228,7 @@ input::placeholder {
   }
 
   .note-container {
-    flex: 0 1 auto;
-    width: auto;
+    width: 80%;
   }
 }
 
@@ -374,11 +376,11 @@ input::placeholder {
   margin: 3px 5px;
 }
 
-.icon-container-toggle:hover{
+.icon-container-toggle:hover {
   cursor: pointer;
 }
 
-.emptycontainer{
+.emptycontainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -387,12 +389,19 @@ input::placeholder {
   height: 350px;
 }
 
-.emptycontainer p{
+.emptycontainer p {
   color: #b1aea3;
   font-size: 2.3rem;
 }
 
-.note-title{
+.note-title {
   font-weight: 400;
   font-size: 1.2rem;
+}
+
+.note-content {
+  word-wrap: break-word;
+  max-height: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
